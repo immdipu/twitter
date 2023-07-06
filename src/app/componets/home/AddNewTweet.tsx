@@ -6,13 +6,26 @@ import { BsEmojiSmile } from "react-icons/bs";
 import { useAppSelector } from "@/redux/hooks";
 import Image from "next/image";
 import clsx from "clsx";
+import { useMutation } from "@tanstack/react-query";
+import { postTweet } from "@/app/apis/TweetApi";
+import { useQueryClient } from "@tanstack/react-query";
 
 const AddNewTweet = () => {
   const [tweetText, setTweetText] = useState<string | null>(null);
   const auth = useAppSelector((state) => state.auth);
+  const queryClient = useQueryClient();
+
+  const addtweet = useMutation((data: string) => postTweet(data), {
+    onSuccess: () => {
+      queryClient.invalidateQueries(["AllTweets"]);
+      setTweetText("");
+    },
+  });
 
   const handleSubmit = () => {
-    console.log(tweetText);
+    if (tweetText && tweetText.trim() !== "") {
+      addtweet.mutate(tweetText);
+    }
   };
 
   return (

@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { useEffect } from "react";
+import { useEffect, useLayoutEffect } from "react";
 import { useAppSelector } from "@/redux/hooks";
 import { useRouter } from "next/navigation";
 import Sidebar from "./componets/sidebar/Sidebar";
@@ -51,13 +51,9 @@ const GlobalApp = ({ children }: { children?: React.ReactNode }) => {
           pathname === "/" || pathname === "/signup" ? "pl-0" : "pl-64 "
         )}
       >
-        {user.isUserAuthenticated ? (
-          <> {children}</>
-        ) : (
-          <>
-            <div>Loading...</div>
-          </>
-        )}
+        {(pathname === "/" || pathname === "/signup") && <>{children}</>}
+        {login.isLoading && <div>Loading...</div>}
+        {user.isUserAuthenticated && <>{children}</>}
       </div>
     </>
   );
