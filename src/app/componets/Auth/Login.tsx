@@ -17,6 +17,7 @@ const Login = () => {
   const login = useMutation((data: any) => LoginFn(data), {
     onSuccess: (data) => {
       dispatch(LoggedIn(data));
+      localStorage.setItem("token", data.token);
       toast.success("Login successfully");
     },
     onError: (data: any) => {

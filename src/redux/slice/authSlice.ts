@@ -9,6 +9,7 @@ interface initialStateProps {
   isUserAuthenticated: boolean;
   token: string | null;
   id: string | null;
+  profilePic: string | null;
 }
 
 const initialState: initialStateProps = {
@@ -19,6 +20,7 @@ const initialState: initialStateProps = {
   isUserAuthenticated: false,
   token: null,
   id: null,
+  profilePic: null,
 };
 
 export const authSlice = createSlice({
@@ -29,13 +31,14 @@ export const authSlice = createSlice({
       state.isUserAuthenticated = action.payload;
     },
     LoggedIn: (state, action: PayloadAction<loginResponseType>) => {
-      state.firstName = action.payload.fistName;
+      state.firstName = action.payload.firstName;
       state.lastName = action.payload.lastName;
       state.email = action.payload.email;
       state.id = action.payload.id;
       state.token = action.payload.token;
       state.username = action.payload.username;
       state.isUserAuthenticated = true;
+      state.profilePic = action.payload.profilePic;
     },
   },
 });

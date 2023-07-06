@@ -9,3 +9,15 @@ export const LoginFn = async (data: loginInputTypes) => {
   );
   return response.data;
 };
+export const AutoLoginFn = async (token: string) => {
+  const response = await axios.get<loginResponseType>(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/user`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    }
+  );
+  return response.data;
+};

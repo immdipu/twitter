@@ -6,7 +6,7 @@ export interface loginInputTypes {
 
 export interface loginResponseType {
   email: string;
-  fistName: string;
+  firstName: string;
   lastName: string;
   profilePic: string;
   token: string;
