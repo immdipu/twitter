@@ -3,6 +3,7 @@ import { SingleTweetTypes } from "@/app/types/TweetTypes";
 import Image from "next/image";
 import TweetButtons from "./TweetButtons";
 import moment from "moment";
+import Link from "next/link";
 
 const SingleTweet: React.FC<SingleTweetTypes> = ({
   _id,
@@ -19,7 +20,10 @@ const SingleTweet: React.FC<SingleTweetTypes> = ({
   const formattedDate = moment(createdAt).fromNow();
 
   return (
-    <div className="border border-gray-500 border-opacity-25 px-3 py-3">
+    <Link
+      href={`/tweet/${_id}`}
+      className="border border-gray-500 block border-opacity-25 px-3 py-3"
+    >
       <section className="flex gap-4">
         <div className="h-11 w-11 relative rounded-full overflow-hidden">
           <Image fill src={postedBy.profilePic} alt="Avatar" />
@@ -51,7 +55,7 @@ const SingleTweet: React.FC<SingleTweetTypes> = ({
           />
         </div>
       </section>
-    </div>
+    </Link>
   );
 };
 

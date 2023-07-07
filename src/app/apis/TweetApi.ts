@@ -1,5 +1,9 @@
 import { Request } from "@/utils/AxiosInterceptor";
-import { SingleTweetTypes, TweetReplyTypes } from "../types/TweetTypes";
+import {
+  SingleTweetTypes,
+  TweetReplyTypes,
+  SingleDetailTweet,
+} from "../types/TweetTypes";
 
 export const getAllTweets = async () => {
   const response = await Request().get<SingleTweetTypes[]>("/tweet");
@@ -25,5 +29,10 @@ export const ReTweetTweet = async (postId: string) => {
 
 export const ReplyTweets = async (data: TweetReplyTypes) => {
   const response = await Request().post("/tweet/reply", data);
+  return response.data;
+};
+
+export const getSingleTweet = async (id: string) => {
+  const response = await Request().get<SingleDetailTweet>(`/tweet/${id}`);
   return response.data;
 };

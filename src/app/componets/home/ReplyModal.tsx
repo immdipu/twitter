@@ -5,6 +5,7 @@ import {
   PostedByTypes,
   retweetDataTypes,
   TweetReplyTypes,
+  Reply,
 } from "@/app/types/TweetTypes";
 import { AiOutlineClose } from "react-icons/ai";
 import moment from "moment";
@@ -20,7 +21,7 @@ interface TweetButtonsProps {
   likes: string[];
   retweets: string[];
   type: "tweet" | "reply" | "retweet";
-  replies: string[];
+  replies: string[] | Reply[];
   content?: string;
   postedBy: PostedByTypes;
   createdAt?: string;
@@ -39,7 +40,7 @@ const ReplyModal: React.FC<TweetButtonsProps> = ({
   postedBy,
   createdAt,
   retweetData,
-  replyTo,
+
   setShowModal,
 }) => {
   const queryClient = useQueryClient();

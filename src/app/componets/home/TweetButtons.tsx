@@ -7,14 +7,14 @@ import { useMutation } from "@tanstack/react-query";
 import { useQueryClient } from "@tanstack/react-query";
 import { useAppSelector } from "@/redux/hooks";
 import ReplyModal from "./ReplyModal";
-import { PostedByTypes, retweetDataTypes } from "@/app/types/TweetTypes";
+import { PostedByTypes, retweetDataTypes, Reply } from "@/app/types/TweetTypes";
 
 interface TweetButtonsProps {
   postId: string;
   likes: string[];
   retweets: string[];
   type: "tweet" | "reply" | "retweet";
-  replies: string[];
+  replies: string[] | Reply[];
   content?: string;
   postedBy: PostedByTypes;
   createdAt?: string;

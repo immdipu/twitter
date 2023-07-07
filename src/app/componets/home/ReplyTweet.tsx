@@ -7,6 +7,8 @@ import moment from "moment";
 import { TbMessageCircle } from "react-icons/tb";
 import { AiOutlineRetweet, AiOutlineHeart } from "react-icons/ai";
 import TweetButtons from "./TweetButtons";
+import { Underdog } from "next/font/google";
+import Link from "next/link";
 
 const ReplyTweet: React.FC<SingleTweetTypes> = ({
   _id,
@@ -25,9 +27,11 @@ const ReplyTweet: React.FC<SingleTweetTypes> = ({
 
   return (
     <>
-      <div className="border border-gray-500 border-opacity-25 px-3 pb-2 pt-1 w-full">
+      <Link
+        href={`/tweet/${_id}`}
+        className="border border-gray-500 block border-opacity-25 px-3 pb-2 pt-1 w-full"
+      >
         <div className="flex items-center pl-7 py-2 "></div>
-
         <section className="flex gap-4">
           <div className="h-11 w-11 relative rounded-full overflow-hidden">
             <Image fill src={postedBy.profilePic} alt="Avatar" />
@@ -47,7 +51,10 @@ const ReplyTweet: React.FC<SingleTweetTypes> = ({
             <div className="flex text-slate-400 gap-1 items-center">
               <span className="font-medium">Replying to</span>
               <span className="font-medium text-blue-700 cursor-pointer">
-                @{replyTo?.postedBy.username}
+                @
+                {typeof replyTo === "string"
+                  ? postedBy.username
+                  : replyTo?.postedBy.username}
               </span>
             </div>
             <section className="font-light text-sm mt-1">
@@ -59,13 +66,12 @@ const ReplyTweet: React.FC<SingleTweetTypes> = ({
               type={type}
               replies={replies}
               retweets={retweetUsers}
-              replyTo={replyTo}
               content={content}
               postedBy={postedBy}
             />
           </div>
         </section>
-      </div>
+      </Link>
     </>
   );
 };
