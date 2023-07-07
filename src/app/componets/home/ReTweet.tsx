@@ -15,6 +15,7 @@ const ReTweet: React.FC<SingleTweetTypes> = ({
   likes,
   retweetUsers,
   replyTo,
+  replies,
   retweetData,
   createdAt,
   type,
@@ -67,6 +68,10 @@ const ReTweet: React.FC<SingleTweetTypes> = ({
               postId={retweetData?._id!}
               likes={retweetData?.likes!}
               type={type}
+              replies={retweetData?.replies!}
+              retweetData={retweetData}
+              postedBy={postedBy}
+              createdAt={createdAt}
               retweets={retweetData?.retweetUsers!}
             />
           </div>

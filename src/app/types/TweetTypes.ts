@@ -3,6 +3,7 @@ export interface SingleTweetTypes {
   createdAt: string;
   type: "tweet" | "reply" | "retweet";
   likes: string[];
+  replies: string[];
   content: string;
   retweetUsers: string[];
   postedBy: PostedByTypes;
@@ -24,6 +25,7 @@ export interface retweetDataTypes {
   postedBy: PostedByTypes;
   likes: string[];
   retweetUsers: string[];
+  replies: string[];
   createdAt: string;
 }
 

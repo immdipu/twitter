@@ -16,11 +16,13 @@ const ReplyTweet: React.FC<SingleTweetTypes> = ({
   retweetUsers,
   replyTo,
   retweetData,
+  replies,
   createdAt,
   type,
 }) => {
   const user = useAppSelector((state) => state.auth);
-  const formattedDate = moment(replyTo?.createdAt).fromNow();
+  const formattedDate = moment(createdAt).fromNow();
+
   return (
     <>
       <div className="border border-gray-500 border-opacity-25 px-3 pb-2 pt-1 w-full">
@@ -55,7 +57,11 @@ const ReplyTweet: React.FC<SingleTweetTypes> = ({
               postId={_id}
               likes={likes}
               type={type}
+              replies={replies}
               retweets={retweetUsers}
+              replyTo={replyTo}
+              content={content}
+              postedBy={postedBy}
             />
           </div>
         </section>

@@ -12,6 +12,7 @@ const SingleTweet: React.FC<SingleTweetTypes> = ({
   retweetUsers,
   replyTo,
   retweetData,
+  replies,
   createdAt,
   type,
 }) => {
@@ -42,7 +43,11 @@ const SingleTweet: React.FC<SingleTweetTypes> = ({
             postId={_id}
             likes={likes}
             type={type}
+            replies={replies}
             retweets={retweetUsers}
+            postedBy={postedBy}
+            createdAt={createdAt}
+            content={content}
           />
         </div>
       </section>

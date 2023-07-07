@@ -23,7 +23,7 @@ export const ReTweetTweet = async (postId: string) => {
   return response.data;
 };
 
-export const RelyTweet = async (data: TweetReplyTypes) => {
+export const ReplyTweets = async (data: TweetReplyTypes) => {
   const response = await Request().post("/tweet/reply", data);
   return response.data;
 };
