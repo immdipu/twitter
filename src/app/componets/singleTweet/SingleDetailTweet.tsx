@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useQuery } from "@tanstack/react-query";
 import TweetButtons from "../home/TweetButtons";
 import ReplyTweet from "../home/ReplyTweet";
+import moment from "moment";
 
 const SingleDetailTweet = ({ id }: { id: string }) => {
   const { isLoading, error, data } = useQuery(["SingleTweet"], () =>
@@ -32,7 +33,9 @@ const SingleDetailTweet = ({ id }: { id: string }) => {
               </span>
             </div>
             <div className="w-1 h-1 mx-2 bg-neutral-500 rounded-full" />
-            <span className="text-sm text-neutral-300">{data?.createdAt}</span>
+            <span className="text-sm text-neutral-300">
+              {moment(data?.createdAt).fromNow()}
+            </span>
           </section>
           <section className="font-light text-sm mt-1">
             <p>{data?.content}</p>

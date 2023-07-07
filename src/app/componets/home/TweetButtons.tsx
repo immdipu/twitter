@@ -62,7 +62,7 @@ const TweetButtons: React.FC<TweetButtonsProps> = ({
 
   return (
     <>
-      <section className="flex my-3 justify-between">
+      <section className="flex my-3 justify-between ">
         {showModal && (
           <section className="bg-black bg-opacity-10 fixed inset-0 z-40 grid place-content-center">
             <ReplyModal
@@ -95,7 +95,7 @@ const TweetButtons: React.FC<TweetButtonsProps> = ({
           className="flex  items-center gap-1 w-16 "
         >
           {isRetweeted ? (
-            <AiOutlineRetweet className="text-xl text-pink-400 " />
+            <AiOutlineRetweet className="text-xl text-green-400 " />
           ) : (
             <AiOutlineRetweet className="text-xl " />
           )}

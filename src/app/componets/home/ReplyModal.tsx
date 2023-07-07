@@ -51,7 +51,7 @@ const ReplyModal: React.FC<TweetButtonsProps> = ({
     (data: TweetReplyTypes) => ReplyTweets(data),
     {
       onSuccess: () => {
-        queryClient.invalidateQueries(["AllTweets"]);
+        queryClient.invalidateQueries(["AllTweets", "SingleTweet"]);
         setShowModal(false);
       },
     }

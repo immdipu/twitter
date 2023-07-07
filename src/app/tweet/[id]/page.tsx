@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import SingleDetailTweet from "@/app/componets/singleTweet/SingleDetailTweet";
 
