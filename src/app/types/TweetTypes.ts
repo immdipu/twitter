@@ -2,9 +2,9 @@ export interface SingleTweetTypes {
   _id: string;
   createdAt: string;
   type: "tweet" | "reply" | "retweet";
-  likes: number;
+  likes: string[];
   content: string;
-  retweets: number;
+  retweetUsers: string[];
   postedBy: PostedByTypes;
   retweetData?: retweetDataTypes;
   replyTo?: retweetDataTypes;
@@ -22,4 +22,12 @@ export interface retweetDataTypes {
   _id: string;
   content: string;
   postedBy: PostedByTypes;
+  likes: string[];
+  retweetUsers: string[];
+  createdAt: string;
+}
+
+export interface TweetReplyTypes {
+  content: string;
+  replyTo: string;
 }

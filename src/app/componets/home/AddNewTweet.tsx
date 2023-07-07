@@ -9,6 +9,7 @@ import clsx from "clsx";
 import { useMutation } from "@tanstack/react-query";
 import { postTweet } from "@/app/apis/TweetApi";
 import { useQueryClient } from "@tanstack/react-query";
+import MiniLoader from "../Loader/MiniLoader";
 
 const AddNewTweet = () => {
   const [tweetText, setTweetText] = useState<string | null>(null);
@@ -25,6 +26,10 @@ const AddNewTweet = () => {
   const handleSubmit = () => {
     if (tweetText && tweetText.trim() !== "") {
       addtweet.mutate(tweetText);
+      const tweetInput = document.querySelector(".tweetform");
+      if (tweetInput?.textContent) {
+        tweetInput.textContent = "";
+      }
     }
   };
 
@@ -41,7 +46,7 @@ const AddNewTweet = () => {
           <div
             contentEditable
             placeholder="What is happening?!"
-            className="text-white w-full outline-none mt-6 pr-3 tweetform"
+            className="text-white  w-full outline-none mt-6 pr-3 tweetform"
             onInput={(e) => {
               const content = e.target as HTMLDivElement;
               setTweetText(content.textContent);
@@ -61,13 +66,22 @@ const AddNewTweet = () => {
           <button
             onClick={handleSubmit}
             className={clsx(
-              "bg-blue-500 px-3 py-1 w-fit rounded-full",
+              "bg-blue-500 px-3 py-1 w-20 rounded-full",
               tweetText?.trim()
                 ? "opacity-100 pointer-events-auto"
-                : "opacity-70 pointer-events-none"
+                : "opacity-70 pointer-events-none",
+              addtweet.isLoading
+                ? " pointer-events-none"
+                : " pointer-events-auto"
             )}
           >
-            Tweet
+            {addtweet.isLoading ? (
+              <>
+                <MiniLoader />
+              </>
+            ) : (
+              " Tweet"
+            )}
           </button>
         </div>
       </div>

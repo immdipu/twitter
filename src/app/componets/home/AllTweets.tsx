@@ -10,10 +10,6 @@ import ReplyTweet from "./ReplyTweet";
 const AllTweets = () => {
   const { isLoading, error, data } = useQuery(["AllTweets"], getAllTweets);
 
-  if (data) {
-    console.log(data);
-  }
-
   if (isLoading) {
     return (
       <div>
@@ -21,8 +17,9 @@ const AllTweets = () => {
       </div>
     );
   }
+
   return (
-    <div className="border border-red-700">
+    <div>
       {data &&
         data?.length > 0 &&
         data.map((item) => {

@@ -1,8 +1,7 @@
 import React from "react";
 import { SingleTweetTypes } from "@/app/types/TweetTypes";
 import Image from "next/image";
-import { TbMessageCircle } from "react-icons/tb";
-import { AiOutlineRetweet, AiOutlineHeart } from "react-icons/ai";
+import TweetButtons from "./TweetButtons";
 import moment from "moment";
 
 const SingleTweet: React.FC<SingleTweetTypes> = ({
@@ -10,7 +9,7 @@ const SingleTweet: React.FC<SingleTweetTypes> = ({
   content,
   postedBy,
   likes,
-  retweets,
+  retweetUsers,
   replyTo,
   retweetData,
   createdAt,
@@ -19,7 +18,7 @@ const SingleTweet: React.FC<SingleTweetTypes> = ({
   const formattedDate = moment(createdAt).fromNow();
 
   return (
-    <div className="border px-3 py-3">
+    <div className="border border-gray-500 border-opacity-25 px-3 py-3">
       <section className="flex gap-4">
         <div className="h-11 w-11 relative rounded-full overflow-hidden">
           <Image fill src={postedBy.profilePic} alt="Avatar" />
@@ -39,11 +38,12 @@ const SingleTweet: React.FC<SingleTweetTypes> = ({
           <section className="font-light text-sm mt-1">
             <p>{content}</p>
           </section>
-          <section className="flex my-3 justify-between">
-            <TbMessageCircle className="text-xl" />
-            <AiOutlineRetweet className="text-xl " />
-            <AiOutlineHeart className="text-xl " />
-          </section>
+          <TweetButtons
+            postId={_id}
+            likes={likes}
+            type={type}
+            retweets={retweetUsers}
+          />
         </div>
       </section>
     </div>

@@ -11,5 +11,5 @@ export interface loginResponseType {
   profilePic: string;
   token: string;
   username: string;
-  id: string;
+  _id: string;
 }

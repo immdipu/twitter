@@ -6,13 +6,14 @@ import { useAppSelector } from "@/redux/hooks";
 import { TbMessageCircle } from "react-icons/tb";
 import { AiOutlineRetweet, AiOutlineHeart } from "react-icons/ai";
 import moment from "moment";
+import TweetButtons from "./TweetButtons";
 
 const ReTweet: React.FC<SingleTweetTypes> = ({
   _id,
   content,
   postedBy,
   likes,
-  retweets,
+  retweetUsers,
   replyTo,
   retweetData,
   createdAt,
@@ -22,7 +23,7 @@ const ReTweet: React.FC<SingleTweetTypes> = ({
   const formattedDate = moment(createdAt).fromNow();
   return (
     <>
-      <div className="border  px-3 pb-2 pt-1">
+      <div className="border border-gray-500 border-opacity-25  px-3 pb-2 pt-1">
         <div className="flex items-center pl-7 py-2">
           <FaRetweet className="text-slate-400 text-xl mx-1" />
           <div className="flex text-slate-400 gap-1 items-center">
@@ -62,11 +63,12 @@ const ReTweet: React.FC<SingleTweetTypes> = ({
             <section className="font-light text-sm mt-1">
               <p>{retweetData?.content}</p>
             </section>
-            <section className="flex my-3 justify-between">
-              <TbMessageCircle className="text-xl" />
-              <AiOutlineRetweet className="text-xl " />
-              <AiOutlineHeart className="text-xl " />
-            </section>
+            <TweetButtons
+              postId={retweetData?._id!}
+              likes={retweetData?.likes!}
+              type={type}
+              retweets={retweetData?.retweetUsers!}
+            />
           </div>
         </section>
       </div>
