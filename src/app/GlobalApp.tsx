@@ -11,6 +11,7 @@ import clsx from "clsx";
 import { AutoLoginFn } from "./apis/authApis";
 import { useMutation } from "@tanstack/react-query";
 import { LoggedIn } from "@/redux/slice/authSlice";
+import MiniLoader from "./componets/Loader/MiniLoader";
 
 const GlobalApp = ({ children }: { children?: React.ReactNode }) => {
   const router = useRouter();
@@ -20,6 +21,9 @@ const GlobalApp = ({ children }: { children?: React.ReactNode }) => {
   const login = useMutation((data: any) => AutoLoginFn(data), {
     onSuccess: (data) => {
       dispatch(LoggedIn(data));
+      if (pathname === "/" || pathname === "/signup") {
+        router.push("/home");
+      }
     },
     onError: (error) => {
       toast.error("Session Expired Login Again");
@@ -35,10 +39,7 @@ const GlobalApp = ({ children }: { children?: React.ReactNode }) => {
       } else {
         router.push("/");
       }
-    } else {
-      router.push("/home");
     }
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user.isUserAuthenticated]);
 
@@ -47,12 +48,16 @@ const GlobalApp = ({ children }: { children?: React.ReactNode }) => {
       {pathname === "/" || pathname === "/signup" ? "" : <Sidebar />}
       <div
         className={clsx(
-          "max-w-5xl w-full",
+          "max-w-5xl w-full border-r border-gray-500 border-opacity-30",
           pathname === "/" || pathname === "/signup" ? "pl-0" : "pl-64 "
         )}
       >
         {(pathname === "/" || pathname === "/signup") && <>{children}</>}
-        {login.isLoading && <div>Loading...</div>}
+        {login.isLoading && (
+          <div className="absolute inset-0 grid place-content-center z-30">
+            <MiniLoader size={30} />
+          </div>
+        )}
         {user.isUserAuthenticated && <>{children}</>}
       </div>
     </>

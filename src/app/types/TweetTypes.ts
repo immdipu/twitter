@@ -56,3 +56,8 @@ export interface Reply {
   replyTo: string;
   createdAt: string;
 }
+
+export interface SearchResponseTypes {
+  Tweets: any;
+  users: PostedByTypes[];
+}

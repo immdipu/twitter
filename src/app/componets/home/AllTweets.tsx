@@ -6,14 +6,18 @@ import MiniLoader from "../Loader/MiniLoader";
 import SingleTweet from "./SingleTweet";
 import ReTweet from "./ReTweet";
 import ReplyTweet from "./ReplyTweet";
+import SingleTweetSkeleton from "../Loader/SingleTweetSkeleton";
 
 const AllTweets = () => {
   const { isLoading, error, data } = useQuery(["AllTweets"], getAllTweets);
 
   if (isLoading) {
     return (
-      <div>
-        <MiniLoader size={30} />
+      <div className="w-full">
+        <SingleTweetSkeleton />
+        <SingleTweetSkeleton />
+        <SingleTweetSkeleton />
+        <SingleTweetSkeleton />
       </div>
     );
   }

@@ -8,16 +8,19 @@ import MiniLoader from "../Loader/MiniLoader";
 import clsx from "clsx";
 import { useAppDispatch } from "@/redux/hooks";
 import { LoggedIn } from "@/redux/slice/authSlice";
+import { useRouter } from "next/navigation";
 
 const Login = () => {
   const [username, setusername] = useState("");
   const [password, setPassword] = useState("");
+  const router = useRouter();
   const dispatch = useAppDispatch();
 
   const login = useMutation((data: any) => LoginFn(data), {
     onSuccess: (data) => {
       dispatch(LoggedIn(data));
       localStorage.setItem("token", data.token);
+      router.replace("/home");
       toast.success("Login successfully");
     },
     onError: (data: any) => {

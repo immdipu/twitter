@@ -4,9 +4,12 @@ import { AiOutlineHome, AiOutlineBell, AiOutlineMessage } from "react-icons/ai";
 import { BsSearch, BsFillPersonFill } from "react-icons/bs";
 import { MdPersonOutline } from "react-icons/md";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import clsx from "clsx";
 
 const Sidebar = () => {
   const auth = useAppSelector((state) => state.auth);
+  const pathname = usePathname();
 
   return (
     <div className="">
@@ -42,8 +45,11 @@ const Sidebar = () => {
           <ul className="space-y-4 mt-7 ml-2 font-medium">
             <li>
               <Link
-                href="#"
-                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                href="/home"
+                className={clsx(
+                  "flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group",
+                  pathname === "/home" ? "bg-gray-200" : " "
+                )}
               >
                 <AiOutlineHome className="text-2xl" />
                 <span className="ml-3 mt-1 text-lg text-gray-500">Home</span>
@@ -51,8 +57,11 @@ const Sidebar = () => {
             </li>
             <li>
               <Link
-                href="#"
-                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                href="/search"
+                className={clsx(
+                  "flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group",
+                  pathname === "/search" ? "bg-gray-200" : " "
+                )}
               >
                 <BsSearch className="text-xl" />
                 <span className="ml-3 mt-1 text-lg text-gray-500">Explore</span>

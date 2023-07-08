@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 
+html,
+body {
+    background-color: rgb(38 38 38);
+}
 
 .tweetform:empty::before {
     content: attr(placeholder);

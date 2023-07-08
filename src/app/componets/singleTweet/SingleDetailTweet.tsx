@@ -9,14 +9,13 @@ import ReplyTweet from "../home/ReplyTweet";
 import moment from "moment";
 
 const SingleDetailTweet = ({ id }: { id: string }) => {
-  const { isLoading, error, data } = useQuery(["SingleTweet"], () =>
+  const { isLoading, error, data } = useQuery(["SingleTweet", id], () =>
     getSingleTweet(id)
   );
 
   if (isLoading) {
     return <div>Loading...</div>;
   }
-
   return (
     <div>
       <section className="flex gap-4 bg-black px-6">

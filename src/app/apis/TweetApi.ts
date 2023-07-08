@@ -3,6 +3,7 @@ import {
   SingleTweetTypes,
   TweetReplyTypes,
   SingleDetailTweet,
+  SearchResponseTypes,
 } from "../types/TweetTypes";
 
 export const getAllTweets = async () => {
@@ -34,5 +35,11 @@ export const ReplyTweets = async (data: TweetReplyTypes) => {
 
 export const getSingleTweet = async (id: string) => {
   const response = await Request().get<SingleDetailTweet>(`/tweet/${id}`);
+  return response.data;
+};
+export const SearchFn = async (searchterm: string) => {
+  const response = await Request().get<SearchResponseTypes>(
+    `/search/${searchterm}`
+  );
   return response.data;
 };
