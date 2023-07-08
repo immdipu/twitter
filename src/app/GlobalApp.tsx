@@ -48,7 +48,7 @@ const GlobalApp = ({ children }: { children?: React.ReactNode }) => {
       {pathname === "/" || pathname === "/signup" ? "" : <Sidebar />}
       <div
         className={clsx(
-          "max-w-5xl w-full border-r border-gray-500 border-opacity-30",
+          "max-w-5xl w-full border-r border-gray-500 border-opacity-30 max-md:pl-0",
           pathname === "/" || pathname === "/signup" ? "pl-0" : "pl-64 "
         )}
       >

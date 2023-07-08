@@ -30,29 +30,35 @@ const ReTweet: React.FC<SingleTweetTypes> = ({
           <FaRetweet className="text-slate-400 text-xl mx-1" />
           <div className="flex text-slate-400 gap-1 items-center">
             {postedBy.username === user.username ? (
-              <span className="font-medium">You</span>
+              <span className="font-medium max-md:text-sm">You</span>
             ) : (
               <>
-                <span className="font-medium">{postedBy.firstName}</span>
-                <span className="font-medium">{postedBy.lastName}</span>
+                <span className="font-medium max-md:text-sm">
+                  {postedBy.firstName}
+                </span>
+                <span className="font-medium max-md:text-sm">
+                  {postedBy.lastName}
+                </span>
               </>
             )}
 
-            <span>Reweeted</span>
+            <span className="max-md:text-sm">Reweeted</span>
             <div className="w-1 h-1 mx-2 bg-neutral-500 rounded-full" />
-            <span className="text-sm text-neutral-300">{formattedDate}</span>
+            <span className="text-sm max-md:text-xs text-neutral-300">
+              {formattedDate}
+            </span>
           </div>
         </div>
         <Link href={`/tweet/${retweetData?._id}`}>
           <section className="flex gap-4">
-            <div className="h-11 w-11 relative rounded-full overflow-hidden">
+            <div className="h-11 max-md:w-8  max-md:h-8 flex-shrink-0 w-11 relative rounded-full overflow-hidden">
               <Image
                 fill
                 src={retweetData?.postedBy.profilePic!}
                 alt="Avatar"
               />
             </div>
-            <div className="flex flex-col text-green-50 w-full  pr-20">
+            <div className="flex flex-col text-green-50 w-full max-md:pr-2 pr-20">
               <section className="flex gap-1">
                 <span className="font-medium">
                   {retweetData?.postedBy.firstName}

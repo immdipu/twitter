@@ -66,7 +66,7 @@ const ReplyModal: React.FC<TweetButtonsProps> = ({
   };
 
   return (
-    <div className="border bg-neutral-900 rounded-2xl border-neutral-500 border-opacity-30 min-w-[35rem]">
+    <div className="border bg-neutral-900 rounded-2xl border-neutral-500 mx-auto max-md:w-full w-1/2 border-opacity-30 ">
       <section className="">
         <div className="h-7 flex justify-end cursor-pointer  px-4 pt-3 ">
           <AiOutlineClose
@@ -74,10 +74,10 @@ const ReplyModal: React.FC<TweetButtonsProps> = ({
             onClick={() => setShowModal(false)}
           />
         </div>
-        <section className=" ml-5 relative pb-2">
+        <section className=" ml-5 relative pb-2 pr-6">
           <div className=" bg-gray-300 w-[2px] bg-opacity-30 absolute top-0 bottom-0 left-5 " />
           <section className=" mt-2   flex gap-3 ">
-            <div className="h-11  w-11 relative rounded-full overflow-hidden">
+            <div className="h-11  w-11 flex-shrink-0 relative rounded-full overflow-hidden">
               <Image fill src={postedBy.profilePic} alt="Avatar" />
             </div>
             <section className="flex flex-col gap-1 items-start ">
@@ -94,7 +94,7 @@ const ReplyModal: React.FC<TweetButtonsProps> = ({
                   {moment(createdAt).fromNow()}
                 </span>
               </div>
-              <section className="font-light text-sm mt-1">
+              <section className="font-light text-sm mt-1 pr-6">
                 {type === "retweet" ? retweetData?.content : content}
               </section>
               <p className="text-sm text-neutral-500 mt-8">
@@ -104,7 +104,7 @@ const ReplyModal: React.FC<TweetButtonsProps> = ({
             </section>
           </section>
         </section>
-        <section className="flex pl-5  gap-3">
+        <section className="flex pl-5 pr-8  gap-3">
           <div className="h-11 flex-shrink-0  w-11 relative rounded-full overflow-hidden">
             <Image fill src={user.profilePic!} alt="Avatar" />
           </div>

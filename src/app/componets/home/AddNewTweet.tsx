@@ -35,7 +35,7 @@ const AddNewTweet = () => {
 
   return (
     <div className="text-white py-3 px-4 flex border-b-[0.1px] border-opacity-30 border-slate-600 gap-4">
-      <div className="h-11 w-11 relative rounded-full overflow-hidden">
+      <div className="h-11 w-11 max-md:w-8  max-md:h-8 relative rounded-full overflow-hidden">
         <Image fill src={auth.profilePic!} alt="Avatar" />
       </div>
       <div className="w-full flex flex-col">

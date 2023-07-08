@@ -64,7 +64,7 @@ const TweetButtons: React.FC<TweetButtonsProps> = ({
     <>
       <section className="flex my-3 justify-between ">
         {showModal && (
-          <section className="bg-black bg-opacity-10 fixed inset-0 z-40 grid place-content-center">
+          <section className="bg-black bg-opacity-10  max-md:mx-4 fixed inset-0 z-40 grid place-content-center">
             <ReplyModal
               setShowModal={setShowModal}
               postId={postId}

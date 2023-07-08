@@ -36,11 +36,11 @@ const ReplyTweet: React.FC<SingleTweetTypes> = ({
         <Link href={`/tweet/${Linkname}`}>
           <div className="flex items-center pl-7 py-2 "></div>
           <section className="flex gap-4">
-            <div className="h-11 w-11 relative rounded-full overflow-hidden">
+            <div className="h-11 max-md:w-8  max-md:h-8 flex-shrink-0  w-11 relative rounded-full overflow-hidden">
               <Image fill src={postedBy.profilePic} alt="Avatar" />
             </div>
-            <div className="flex flex-col text-green-50 w-full  pr-20">
-              <section className="flex gap-1 items-center">
+            <div className="flex flex-col text-green-50 w-full max-md:pr-2  pr-20">
+              <section className="flex gap-1 items-center max-md:text-sm">
                 <span className="font-medium">{postedBy.firstName}</span>
                 <span className="font-medium">{postedBy.lastName}</span>
                 <div className="ml-1">
@@ -49,7 +49,7 @@ const ReplyTweet: React.FC<SingleTweetTypes> = ({
                   </span>
                 </div>
                 <div className="w-1 h-1 mx-2 bg-neutral-500 rounded-full" />
-                <span className="text-sm text-neutral-300">
+                <span className="text-sm max-md:text-xs text-neutral-300">
                   {formattedDate}
                 </span>
               </section>
