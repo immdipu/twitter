@@ -6,10 +6,14 @@ import { MdPersonOutline } from "react-icons/md";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
+import { useRouter } from "next/navigation";
+import { FiLogOut } from "react-icons/fi";
+import { toast } from "react-toastify";
 
 const Sidebar = () => {
   const auth = useAppSelector((state) => state.auth);
   const pathname = usePathname();
+  const router = useRouter();
   const [showsidebar, setShowsidebar] = useState(false);
 
   return (
@@ -83,7 +87,7 @@ const Sidebar = () => {
             <li>
               <Link
                 href="#"
-                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                className="flex items-center pointer-events-none  p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
                 <AiOutlineBell className="text-2xl text-neutral-300" />
                 <span className="ml-3 mt-1 text-lg text-gray-500">
@@ -94,7 +98,7 @@ const Sidebar = () => {
             <li>
               <Link
                 href="#"
-                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                className="flex items-center pointer-events-none cursor-not-allowed  p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
                 <AiOutlineMessage className="text-2xl text-neutral-300" />
                 <span className="ml-3 mt-1 text-lg text-gray-500">
@@ -105,11 +109,24 @@ const Sidebar = () => {
             <li>
               <Link
                 href="#"
-                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white  hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                className="flex pointer-events-none cursor-not-allowed items-center p-2 text-gray-900 rounded-lg dark:text-white  hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
                 <MdPersonOutline className="text-2xl text-neutral-300" />
                 <span className="ml-3 mt-1 text-lg text-gray-500">Profile</span>
               </Link>
+            </li>
+            <li>
+              <div
+                onClick={() => {
+                  localStorage.removeItem("token");
+                  toast.success("Successfully Logged out");
+                  router.push("/");
+                }}
+                className="flex cursor-pointer items-center p-2 text-gray-900 rounded-lg dark:text-white  hover:bg-gray-100 dark:hover:bg-gray-700 group"
+              >
+                <FiLogOut className="text-2xl text-neutral-300" />
+                <span className="ml-3 mt-1 text-lg text-gray-500">Log out</span>
+              </div>
             </li>
           </ul>
           <section className="absolute items-center bg-neutral-700 bottom-0 left-0 right-0 px-5 gap-3 py-8 flex">
