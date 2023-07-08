@@ -13,3 +13,13 @@ export interface loginResponseType {
   username: string;
   _id: string;
 }
+
+export interface SignupResponseTypes {
+  _id: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  profilePic: string;
+  username: string;
+  token: string;
+}

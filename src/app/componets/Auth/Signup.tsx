@@ -1,33 +1,51 @@
 "use client";
 import Link from "next/link";
 import React, { useState } from "react";
+import { useMutation } from "@tanstack/react-query";
+import { SignupFn } from "@/app/apis/authApis";
+import { useAppDispatch } from "@/redux/hooks";
+import MiniLoader from "../Loader/MiniLoader";
+import { toast } from "react-toastify";
+import clsx from "clsx";
+import { LoggedIn } from "@/redux/slice/authSlice";
+import { useRouter } from "next/navigation";
 
 const Signup = () => {
+  const dispatch = useAppDispatch();
+  const router = useRouter();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+  const signup = useMutation((data: any) => SignupFn(data), {
+    onSuccess: (data) => {
+      dispatch(LoggedIn(data));
+      localStorage.setItem("token", data.token);
+      toast.success("Account created successfully");
+      router.replace("/home");
+    },
+    onError: (data: any) => {
+      const msg: string = data.response.data;
+      if (msg) {
+        toast.error(msg);
+      } else {
+        toast.error("Login failed Try Again!");
+      }
+    },
+  });
+
   const handleSubmit = (e: any) => {
     e.preventDefault();
-
-    // Perform form submission logic here
-    // You can access the form field values using the state variables
-    console.log("Submitted values:", {
+    let data = {
       firstName,
       lastName,
       email,
       username,
       password,
-    });
-
-    // Reset the form
-    setFirstName("");
-    setLastName("");
-    setEmail("");
-    setUsername("");
-    setPassword("");
+    };
+    signup.mutate(data);
   };
 
   return (
@@ -123,7 +141,7 @@ const Signup = () => {
                     Password
                   </label>
                   <input
-                    type="password"
+                    type="text"
                     name="password"
                     id="password"
                     value={password}
@@ -136,9 +154,14 @@ const Signup = () => {
 
                 <button
                   type="submit"
-                  className="w-full text-white bg-primary-600 hover:bg-primary-700  bg-blue-600 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                  className={clsx(
+                    "w-full text-white bg-primary-600 hover:bg-primary-700  bg-blue-600 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800",
+                    signup.isLoading
+                      ? "pointer-events-none"
+                      : "pointer-events-auto"
+                  )}
                 >
-                  Create an account
+                  {signup.isLoading ? <MiniLoader /> : "Create an account"}
                 </button>
                 <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                   Already have an account?{" "}
